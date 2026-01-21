@@ -1,0 +1,21 @@
+{
+  "name": "pomodoro-pair",
+  "version": "1.0.0",
+  "description": "Pomodoro приложение для двух пользователей с realtime синхронизацией",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["pomodoro", "websocket", "realtime"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.14.2",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1",
+    "cookie-parser": "^1.4.6"
+  }
+}

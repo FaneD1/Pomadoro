@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Pair - Таймер для двоих</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Экран входа -->
+  <div id="loginScreen" class="screen">
+    <div class="login-container">
+      <h1>🍅 Pomodoro Pair</h1>
+      <p class="subtitle">Войдите по invite-коду</p>
+      <form id="loginForm">
+        <input 
+          type="text" 
+          id="inviteCodeInput" 
+          placeholder="Ваш invite-код" 
+          required
+          autocomplete="off"
+        >
+        <input 
+          type="text" 
+          id="nameInput" 
+          placeholder="Ваше имя" 
+          required
+          autocomplete="off"
+        >
+        <button type="submit">Войти</button>
+      </form>
+      <p class="hint">Если вы первый в комнате, создайте новый invite-код. Если второй — используйте код партнёра.</p>
+    </div>
+  </div>
+
+  <!-- Основной экран приложения -->
+  <div id="appScreen" class="screen hidden">
+    <header>
+      <h1>🍅 Pomodoro Pair</h1>
+      <div class="user-info">
+        <span id="userName"></span>
+        <button id="logoutBtn" class="btn-small">Выйти</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Мой таймер -->
+      <section class="timer-section">
+        <h2>Мой таймер</h2>
+        
+        <!-- Управление задачами -->
+        <div class="tasks-panel">
+          <div class="task-input-group">
+            <input 
+              type="text" 
+              id="newTaskInput" 
+              placeholder="Новая задача..." 
+              autocomplete="off"
+            >
+            <button id="addTaskBtn" class="btn-primary">Добавить</button>
+          </div>
+          
+          <div id="tasksList" class="tasks-list"></div>
+        </div>
+
+        <!-- Активная задача -->
+        <div id="activeTaskDisplay" class="active-task">
+          <span class="task-label">Активная задача:</span>
+          <span id="activeTaskTitle" class="task-title">—</span>
+        </div>
+
+        <!-- Таймер -->
+        <div class="timer-display">
+          <div class="timer-circle">
+            <svg class="timer-svg" viewBox="0 0 200 200">
+              <circle class="timer-bg" cx="100" cy="100" r="90"></circle>
+              <circle 
+                class="timer-progress" 
+                id="myTimerProgress"
+                cx="100" 
+                cy="100" 
+                r="90"
+              ></circle>
+            </svg>
+            <div class="timer-time" id="myTimerTime">25:00</div>
+            <div class="timer-phase" id="myTimerPhase">work</div>
+          </div>
+        </div>
+
+        <!-- Управление таймером -->
+        <div class="timer-controls">
+          <button id="startTimerBtn" class="btn-primary">▶ Старт</button>
+          <button id="pauseTimerBtn" class="btn-secondary" disabled>⏸ Пауза</button>
+          <button id="stopTimerBtn" class="btn-secondary" disabled>⏹ Стоп</button>
+        </div>
+
+        <!-- Настройки таймера -->
+        <div class="timer-settings">
+          <label>
+            Работа (мин):
+            <input type="number" id="workDuration" value="25" min="1" max="60">
+          </label>
+          <label>
+            Перерыв (мин):
+            <input type="number" id="breakDuration" value="5" min="1" max="60">
+          </label>
+        </div>
+      </section>
+
+      <!-- Таймер партнёра -->
+      <section class="timer-section partner-section">
+        <h2>Партнёр</h2>
+        
+        <div id="partnerInfo" class="partner-info">
+          <div id="partnerName" class="partner-name">Ожидание партнёра...</div>
+          
+          <!-- Активная задача партнёра -->
+          <div id="partnerTaskDisplay" class="active-task">
+            <span class="task-label">Активная задача:</span>
+            <span id="partnerTaskTitle" class="task-title">—</span>
+          </div>
+
+          <!-- Таймер партнёра -->
+          <div class="timer-display">
+            <div class="timer-circle">
+              <svg class="timer-svg" viewBox="0 0 200 200">
+                <circle class="timer-bg" cx="100" cy="100" r="90"></circle>
+                <circle 
+                  class="timer-progress partner-progress" 
+                  id="partnerTimerProgress"
+                  cx="100" 
+                  cy="100" 
+                  r="90"
+                ></circle>
+              </svg>
+              <div class="timer-time" id="partnerTimerTime">—</div>
+              <div class="timer-phase" id="partnerTimerPhase">—</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
